@@ -1,15 +1,61 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GraduationCap, Eye, EyeOff, ArrowRight } from "lucide-react";
 import { Label } from "../components/ui/Label";
 import { Input } from "../components/ui/Input";
 import { Button } from "../components/ui/Button";
+import { AuthContext } from "../context/AuthContext";
+import { redirectToDashboard } from "../utils/redirectToDasboard";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const handleSubmit = () => {
+  const [identifier, setIdentifier] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  // Getting values from AuthContext
+  const {login, isAuthenticated, user, loading} = useContext(AuthContext)
+
+  // Check if user is already authenticated
+  useEffect(() => {
+    if(!loading && isAuthenticated && user) {
+      redirectToDashboard(user.roles, navigate);
+    }
+
+  }, [isAuthenticated, user, loading]);
+
+  const handleSubmit = async (e) => {
     // Handle login logic here
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      // MOCK RESPONSE (replace with API later)
+      const response = {
+      token: "mock-jwt-token",
+      user: {
+        id: 1,
+        name: "John Doe",
+        roles: ["super_admin"], // change to test
+      },
+    };
+
+    // Save auth data in context
+    login(response);
+
+    // Redirect user
+    redirectToDashboard(response.user.roles, navigate);
+
+      
+    } catch (error) {
+      console.error("Login failed:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <div className="min-h-screen flex">
@@ -31,11 +77,13 @@ const LoginPage = () => {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="identifier">Email or Registration Number</Label>
               <Input
-                id="email"
-                type="email"
-                placeholder="Enter your email"
+                id="identifier"
+                type="text"
+                value={identifier}
+                onChange={(e) => setIdentifier(e.target.value)}
+                placeholder="Email or Reg. Number"
                 required
               />
             </div>
@@ -54,6 +102,8 @@ const LoginPage = () => {
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password"
                   required
                 />
@@ -76,7 +126,7 @@ const LoginPage = () => {
               size="lg"
               className="w-full"
               variant="gradient"
-              disabled={isLoading}
+              disabled={isLoading || !identifier || !password}
             >
               {isLoading ? "Signing in..." : "Sign In"}
               <ArrowRight className="ml-2 h-4 w-4" />

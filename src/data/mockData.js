@@ -777,3 +777,12 @@ export const enrollmentApplications = [
     documents: ["Birth Certificate", "Previous Report Card", "Passport Photo"],
   },
 ];
+
+export const roleGreetings = {
+    "super-admin": "System Administrator",
+    principal: "Principal",
+    "form-teacher": "Form Teacher",
+    teacher: "Teacher",
+    parent: "Parent",
+    student: "Student",
+  };

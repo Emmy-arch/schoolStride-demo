@@ -27,18 +27,18 @@ import {
  */
 export const dashboardMenu = {
   "super-admin": [
-    { label: "Dashboard", icon: LayoutDashboard, href: "/dashboard" },
-    { label: "User Management", icon: Users, href: "/dashboard/users" },
-    { label: "Enrollment", icon: UserPlus, href: "/dashboard/enrollment" },
-    { label: "Class Management", icon: School, href: "/dashboard/classes" },
-    { label: "Subject Management", icon: BookOpen, href: "/dashboard/subjects" },
-    { label: "Session & Term", icon: Calendar, href: "/dashboard/sessions" },
-    { label: "Exam Settings", icon: ClipboardList, href: "/dashboard/exams" },
-    { label: "Blog & Gallery", icon: Image, href: "/dashboard/content" },
-    { label: "Communications", icon: Mail, href: "/dashboard/communications" },
-    { label: "System Settings", icon: Settings, href: "/dashboard/settings" },
-    { label: "Audit Logs", icon: Shield, href: "/dashboard/audit" },
-    { label: "Profile", icon: UserCheck, href: "/dashboard/profile" },
+    { label: "Dashboard", icon: LayoutDashboard, href: "/admin" },
+    { label: "User Management", icon: Users, href: "/admin/users" },
+    { label: "Enrollment", icon: UserPlus, href: "/admin/enrollment" },
+    { label: "Class Management", icon: School, href: "/admin/classes" },
+    { label: "Subject Management", icon: BookOpen, href: "/admin/subjects" },
+    { label: "Session & Term", icon: Calendar, href: "/admin/sessions" },
+    { label: "Exam Settings", icon: ClipboardList, href: "/admin/exams" },
+    { label: "Blog & Gallery", icon: Image, href: "/admin/content" },
+    { label: "Communications", icon: Mail, href: "/admin/communications" },
+    { label: "System Settings", icon: Settings, href: "/admin/settings" },
+    { label: "Audit Logs", icon: Shield, href: "/admin/audit" },
+    { label: "Profile", icon: UserCheck, href: "/admin/profile" },
   ],
 
   principal: [

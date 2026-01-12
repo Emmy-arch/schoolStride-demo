@@ -19,7 +19,7 @@ import {
   AvatarImage,
 } from "../../components/ui/Avatar";
 
-const DashboardHeader = ({ onMenuClick, currentRole, onRoleChange }) => {
+const DashboardHeader = ({ onMenuClick, currentRole, onRoleChange, handleLogout }) => {
   const roleLabel = roleLabels[currentRole] || []; // Example role
   return (
     <header className="sticky top-0 z-30 bg-card/80 backdrop-blur-xl border-b border-border">
@@ -105,7 +105,7 @@ const DashboardHeader = ({ onMenuClick, currentRole, onRoleChange }) => {
               <DropdownItem>Preferences</DropdownItem>
               <DropdownSeparator />
 
-              <DropdownItem className="text-destructive">Sign Out</DropdownItem>
+              <DropdownItem onClick={handleLogout} className="text-destructive">Sign Out</DropdownItem>
             </DropdownContent>
           </Dropdown>
         </div>

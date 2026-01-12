@@ -5,14 +5,17 @@ import { Button } from "../../components/ui/Button";
 import ScrollArea from "../../components/ui/ScrollArea";
 import { dashboardMenu } from "../../config/dashboard-menu";
 
-const DashboardSidebar = ({ isOpen, currentRole, onClose }) => {
+const DashboardSidebar = ({ isOpen, currentRole, onClose, handleLogout }) => {
   const menuItems = dashboardMenu[currentRole] || [];
   const location = useLocation();
   return (
     <>
       {/* Overlay */}
       {isOpen && (
-        <div className="fixed inset-0 bg-foreground/20 backdrop-blur-sm z-40 lg:hidden" onClick={onClose}></div>
+        <div
+          className="fixed inset-0 bg-foreground/20 backdrop-blur-sm z-40 lg:hidden"
+          onClick={onClose}
+        ></div>
       )}
 
       {/* Sidebar */}
@@ -67,14 +70,12 @@ const DashboardSidebar = ({ isOpen, currentRole, onClose }) => {
           {/* Footer */}
           <div className="p-4 border-t border-sidebar-border">
             <Button
+              onClick={handleLogout}
               variant="ghost"
               className="w-full justify-start text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground"
-              
             >
-              <Link to="/">
-                <LogOut className="inline h-5 w-5 mr-3" />
-                Sign Out
-              </Link>
+              <LogOut className="inline h-5 w-5 mr-3" />
+              Sign Out
             </Button>
           </div>
         </div>
